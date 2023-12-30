@@ -8,6 +8,8 @@
 		"*.scss.liquid": "liquid-scss",
 		"*.c": "c",
 		"libft.h": "c",
-		"mlx.h": "c"
+		"mlx.h": "c",
+		"keysym.h": "c",
+		"keysymdef.h": "c"
 	}
 }

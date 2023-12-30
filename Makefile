@@ -1,32 +1,37 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRC = ./src/pipex.c ./src/pipex_utils.c ./src/pipex_utils_2.c ./src/pipex_utils_3.c ./src/pipex_utils_4.c
-SRC_BONUS = ./src/pipex_bonus.c ./src/pipex_utils.c ./src/pipex_utils_2.c ./src/pipex_utils_3.c ./src/pipex_utils_4.c
-
+SRC = main.c
 OBJS = $(SRC:.c=.o)
-OBJS_BONUS = $(SRC_BONUS:.c=.o)
 LIBFT = ./libft/libft.a
-HEAD = ./includes
-NAME = pipex
+INCLUDE = -I./libft/libft.h -I./minilibx-linux/mlx.h 
+MLX_FLAGS = -Lminilibx-linux -L/usr/lib/X11 -lXext -lX11
+MLX_LIB = ./minilibx-linux/libmlx_Linux.a
+
+NAME = so_long
 RM = rm -f
 
 all: $(NAME)
 
+.SECONDARY: $(OBJS)
+
 $(NAME): $(OBJS)
-	@make -C libft
-	@$(CC) $(CFLAGS) -o $(NAME) $(SRC:.c=.o) $(LIBFT) -I $(HEAD)
+	make -C libft
+	make -C minilibx-linux
+	$(CC) $(CFLAGS) -o $(NAME) $(SRC:.c=.o) $(LIBFT) $(INCLUDE) $(MLX_FLAGS) $(MLX_LIB)
 
 bonus: $(OBJS_BONUS)
-	@make -C libft
-	@$(CC) $(CFLAGS) -o $(NAME)  $(SRC_BONUS:.c=.o) $(LIBFT) -I $(HEAD)
+	make -C libft
+	make -C minilibx-linux 
+	$(CC) $(CFLAGS) -o $(NAME)  $(SRC_BONUS:.c=.o) $(LIBFT)  $(INCLUDE) $(MLX_FLAGS) $(MLX_LIB)
 
 fclean: clean
-	@make fclean -C libft
-	@$(RM) $(NAME)
+	make fclean -C libft
+	$(RM) $(NAME)
 
 clean:
-	@make clean -C libft
-	@$(RM) $(OBJS) $(OBJS_BONUS)
+	make clean -C libft
+	make clean -C minilibx-linux
+	$(RM) $(OBJS) $(OBJS_BONUS)
 
 re: fclean all
 

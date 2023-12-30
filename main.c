@@ -2,52 +2,37 @@
 #include "libft/libft.h"
 #include <X11/keysym.h>
 
+#define EXIT_FAILURE 1
+#define EXIT_SUCCESS 0
+#define WINDOW_WIDTH 420
+#define WINDOW_HEIGHT 420
+
+typedef struct s_img
+{
+    void *img_ptr;
+    char *addr;
+    int endian;
+    int bits_per_pixel;
+    int size_line;
+} t_img;
+
 typedef struct s_data
 {
-    void	*mlx_ptr;
-    void	*win_ptr;
-}	t_data;
+    void *mlx_ptr;
+    void *win_ptr;
+    t_img *img;
+} t_data;
 
-#define MLX_ERROR 1
-#define MLX_ERROR 1
-#define WINDOW_WIDTH 1920
-#define WINDOW_HEIGHT 1080
 
-int	handle_no_event(void *data)
+int main(void)
 {
-    /* This function needs to exist, but it is useless for the moment */
-    return (0);
-}
-
-int	handle_input(int keysym, t_data *data)
-{
-    if (keysym == XK_Escape)
-        mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-    return (0);
-}
-
-int	main(void)
-{
-    t_data	data;
-
-    data.mlx_ptr = mlx_init();
-    if (data.mlx_ptr == NULL)
-        return (MLX_ERROR);
-    data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT,
-            "My first window!");
-    if (data.win_ptr == NULL)
-    {
-        free(data.win_ptr);
-        return (MLX_ERROR);
-    }
-
-    /* Setup hooks */ 
-    mlx_loop_hook(data.mlx_ptr, &handle_no_event, &data);
-    mlx_key_hook(data.win_ptr, &handle_input, &data);
-
-    mlx_loop(data.mlx_ptr);
-
-    /* we will exit the loop if there's no window left, and execute this code */
-    mlx_destroy_display(data.mlx_ptr);
-    free(data.mlx_ptr);
+    t_data *mlxd = malloc(sizeof(t_data));
+    mlxd->mlx_ptr = mlx_init();
+    if (NULL == mlxd->mlx_ptr)
+        exit(EXIT_FAILURE);
+    mlxd->win_ptr = mlx_new_window(mlxd->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "So long");
+    if  (NULL == mlxd->win_ptr)
+        exit(EXIT_FAILURE);
+    mlx_loop(mlxd->mlx_ptr);
+    return (EXIT_SUCCESS);
 }
