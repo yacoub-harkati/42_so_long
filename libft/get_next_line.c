@@ -31,7 +31,7 @@ char	*get_rest(char *s)
 	int		len;
 
 	i = 0;
-	if (*s == '\0')
+	if (!*s)
 	{
 		free(s);
 		return (NULL);
