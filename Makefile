@@ -1,6 +1,6 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRC = main.c
+SRC = $(wildcard *.c)
 OBJS = $(SRC:.c=.o)
 LIBFT = ./libft/libft.a
 INCLUDE = -I./libft/libft.h -I./minilibx-linux/mlx.h 
