@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 20:34:37 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/14 23:22:48 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/15 16:08:19 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ int main(int ac, char **av)
     printf("map exit: %d\n", map->exit);
     printf("exit: %d\n", map->exit_reached);
     printf("exit: %s\n", map->exit_reached == 1 ? "true" : "false");
+    mlx_loop(data->mlx_ptr);
     return (EXIT_SUCCESS);
 }

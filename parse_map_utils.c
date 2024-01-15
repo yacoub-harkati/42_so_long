@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 16:15:14 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/14 17:38:14 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/15 15:34:04 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int read_height(char *map_name, t_data *data, t_map *map)
 	{
 		read = get_next_line(fd, &line);
 		height++;
+		free(line);
 		if (!read)
 			break;
 	}
