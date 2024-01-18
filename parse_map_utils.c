@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 16:15:14 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/15 15:34:04 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/18 16:13:36 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void read_map_items(t_map *map, t_data *data)
 				continue;
 			}
 			else
+				ft_fprintf(2, "Error\nInvalid map");
 				cleanup_exit_error(data, map);
 			j++;
 		}

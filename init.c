@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 16:53:42 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/15 16:16:32 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/18 16:08:09 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void init_struct(t_data **data, t_map **map, char *map_name)
 	init_map(map, map_name, *data);
 	*data = malloc(sizeof(t_data));
 	(*data)->mlx_ptr = mlx_init();
-	(*data)->win_ptr = mlx_new_window((*data)->mlx_ptr, (*map)->width * 64, (*map)->height * 64, "So long");
+	(*data)->win_ptr = mlx_new_window((*data)->mlx_ptr, (*map)->width * 32, (*map)->height * 32, "So long");
 }
 
 void init_map(t_map **map, char *map_name, t_data *data)

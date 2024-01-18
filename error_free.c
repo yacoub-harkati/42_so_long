@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:35:19 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/14 23:34:11 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/18 16:06:17 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ void cleanup_exit_error(t_data *data, t_map *map)
 	}
 	if (data)
 		free(data);
+	ft_fprintf(2, "Error\nError Occured");
 	exit(EXIT_FAILURE);
 }

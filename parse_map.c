@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 16:15:14 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/14 23:35:44 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/18 16:14:19 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void read_map(t_map *map, char *map_name, t_data *data)
 		free(line[0]);
 		if (!read)
 			break;
-
 	}
 	map->map = ft_split(line[1], '\n');
 	close(fd);
@@ -68,7 +67,7 @@ void flood_fill_map(t_map *map, int row, int col)
 		map->collect--;
 	if (current == 'E')
 	{
-			map->exit_reached = true;
+		map->exit_reached = true;
 		return;
 	}
 	map->map_cpy[row][col] = 'F';
@@ -81,13 +80,20 @@ void flood_fill_map(t_map *map, int row, int col)
 void check_map(t_map *map, t_data *data)
 {
 	if (map->exit != 1 || map->collect < 1 || map->player != 1)
+	{
+		ft_fprintf(2, "Error\nInvalid map");
 		cleanup_exit_error(data, map);
+	}
 	if (!is_map_rectangle(map) || !is_map_surrounded_by_walls(map))
+	{
+		ft_fprintf(2, "Error\nInvalid map");
 		cleanup_exit_error(data, map);
+	}
 	cpy_map(map);
 	flood_fill_map(map, map->p_x, map->p_y);
-	// for (int i = 0; map->map_cpy[i]; i++)
-    //     printf("%s\n", map->map_cpy[i]);
 	if (!map->exit_reached || !!map->collect)
+	{
+		ft_fprintf(2, "Error\nInvalid map");
 		cleanup_exit_error(data, map);
+	}
 }
