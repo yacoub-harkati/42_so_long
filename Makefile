@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror 
 SRC = $(wildcard *.c)
 OBJS = $(SRC:.c=.o)
 LIBFT = -Llibft -l:libft.a

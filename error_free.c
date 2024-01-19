@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:35:19 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/18 16:06:17 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:13:27 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,18 @@ void free_map(char **mx)
 	free(mx);
 }
 
-void cleanup_exit_error(t_data *data, t_map *map)
+void cleanup_exit_error( t_map *map)
+{
+	if (map)
+	{
+		free_map(map->map);
+		free_map(map->map_cpy);
+		free(map);
+	}
+	exit(EXIT_FAILURE);
+}
+
+void cleanup_exit(t_data *data, t_map *map)
 {
 	if (map)
 	{
@@ -37,7 +48,16 @@ void cleanup_exit_error(t_data *data, t_map *map)
 		free(map);
 	}
 	if (data)
+	{
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+		mlx_destroy_display(data->mlx_ptr);
 		free(data);
-	ft_fprintf(2, "Error\nError Occured");
-	exit(EXIT_FAILURE);
+	}
+}
+
+
+void handle_invalid_map(t_map *map)
+{
+    ft_fprintf(2, "Error\nInvalid map");
+    cleanup_exit_error(map);
 }

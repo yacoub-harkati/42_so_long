@@ -6,13 +6,13 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 16:15:14 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/18 16:13:36 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:13:21 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int read_height(char *map_name, t_data *data, t_map *map)
+int read_height(char *map_name, t_map *map)
 {
 	int fd;
 	char *line;
@@ -24,7 +24,7 @@ int read_height(char *map_name, t_data *data, t_map *map)
 	if (fd < 0)
 	{
 		ft_fprintf(2, "Error\nCan't open map");
-		cleanup_exit_error(data, map);
+		cleanup_exit_error(map);
 	}
 	while (1)
 	{
@@ -48,40 +48,37 @@ void read_width(t_map *map)
 	map->width = width;
 }
 
-void read_map_items(t_map *map, t_data *data)
+void read_map_items(t_map *map)
 {
-	int i;
-	int j;
+    int i = 0;
+    int j;
 
-	i = 0;
-	while (map->map[i])
-	{
-		j = 0;
-		while (map->map[i][j])
-		{
-			if (map->map[i][j] == 'C')
-				map->collect++;
-			else if (map->map[i][j] == 'P')
-			{
-				map->p_x = i;
-				map->p_y = j;
-				map->player++;
-			}
-			else if (map->map[i][j] == 'E')
-				map->exit++;
-			else if (map->map[i][j] == '1' || map->map[i][j] == '0')
-			{
-				j++;
-				continue;
-			}
-			else
-				ft_fprintf(2, "Error\nInvalid map");
-				cleanup_exit_error(data, map);
-			j++;
-		}
-		i++;
-	}
-	map->collectibles = map->collect;
+    while (map->map[i])
+    {
+        j = 0;
+        while (map->map[i][j])
+        {
+            char cell = map->map[i][j];
+            if (cell == 'C')
+                map->collect++;
+            else if (cell == 'P')
+                set_player_position(map, i, j);
+            else if (cell == 'E')
+                map->exit++;
+            else if (cell != '1' && cell != '0')
+                handle_invalid_map(map);
+            j++;
+        }
+        i++;
+    }
+    map->collectibles = map->collect;
+}
+
+void set_player_position(t_map *map, int i, int j)
+{
+    map->p_x = i;
+    map->p_y = j;
+    map->player++;
 }
 
 bool is_map_rectangle(t_map *map)
