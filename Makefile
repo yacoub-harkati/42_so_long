@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror # -fsanitize=address -g3
 SRC = $(wildcard *.c)
 OBJS = $(SRC:.c=.o)
 LIBFT = -Llibft -l:libft.a
@@ -14,11 +14,13 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C libft
+	make bonus -C libft
 	make -C minilibx-linux
 	$(CC) $(CFLAGS) -o $(NAME) $(SRC:.c=.o) $(LIBFT) $(INCLUDE) $(MLX_FLAGS)
 
 bonus: $(OBJS_BONUS)
 	make -C libft
+	make bonus -C libft
 	make -C minilibx-linux 
 	$(CC) $(CFLAGS) -o $(NAME)  $(SRC_BONUS:.c=.o) $(LIBFT)  $(INCLUDE) $(MLX_FLAGS)
 

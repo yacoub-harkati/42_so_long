@@ -5,35 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/31 16:53:42 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/19 00:38:11 by yaharkat         ###   ########.fr       */
+/*   Created: 2024/01/21 17:22:59 by yaharkat          #+#    #+#             */
+/*   Updated: 2024/01/21 21:03:56 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void init_struct(t_data **data, t_map **map, char *map_name)
+void init_struct(t_solong **data)
 {
-	init_map(map, map_name);
-	*data = malloc(sizeof(t_data));
+	(*data) = ft_calloc(1, sizeof(t_solong));
+	if (!(*data))
+		exit(EXIT_FAILURE);
 	(*data)->mlx_ptr = mlx_init();
-	(*data)->win_ptr = mlx_new_window((*data)->mlx_ptr, (*map)->width * 32, (*map)->height * 32, "So long");
-	(*data)->imgs = malloc(sizeof(t_img));
-	init_images(*data, (*data)->imgs);
-}
-
-void init_map(t_map **map, char *map_name)
-{
-	*map = malloc(sizeof(t_map));
-	(*map)->height = read_height(map_name, *map);
-	(*map)->width = 0;
-	(*map)->exit_reached = false;
-	(*map)->collect = 0;
-	(*map)->player = 0;
-	(*map)->map = NULL;
-	(*map)->map_cpy = NULL;
-	read_map(*map, map_name);
-	read_width(*map);
-	read_map_items(*map);
-	check_map(*map);
+	(*data)->mlx_win = NULL;
+	(*data)->collect = 0;
+	(*data)->collectibles = 0;
+	(*data)->exit = 0;
+	(*data)->exit_reached = false;
+	(*data)->height = 0;
+	(*data)->width = 0;
+	(*data)->map = NULL;
+	(*data)->map_cpy = NULL;
+	(*data)->map_lst = NULL;
+	(*data)->map_fd = -1;
+	(*data)->p_x = -1;
+	(*data)->p_y = -1;
+	(*data)->moves = 0;
+	(*data)->player = 0;
 }
