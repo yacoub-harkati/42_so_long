@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 21:03:41 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/22 03:10:29 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/22 19:51:19 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,33 +48,9 @@ void	convert_lst(t_solong *data)
 	ft_lstclear(&(data->map_lst), free);
 }
 
-void	init_player(int x, int y, t_solong *data)
+void	init_player(int row, int col, t_solong *data)
 {
-	data->p_x = x;
-	data->p_y = y;
+	data->p_x = col;
+	data->p_y = row;
 	data->player++;
-}
-
-void	flood_fill_map(t_solong *data, size_t x, size_t y)
-{
-	char current;
-
-	if (x <= 0 || x >= data->width || y <= 0 || y >= data->height)
-		return ;
-	current = data->map_cpy[y][x];
-	if (current == 'F' || current == '1')
-		return ;
-	if (current == 'C')
-		data->collect--;
-	else if (current == 'E')
-	{
-		data->exit_reached = true;
-		data->map_cpy[y][x] = 'F';
-		return ;
-	}
-	data->map_cpy[y][x] = 'F';
-	flood_fill_map(data, x + 1, y);
-	flood_fill_map(data, x - 1, y);
-	flood_fill_map(data, x, y - 1);
-	flood_fill_map(data, x, y + 1);
 }

@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:29:24 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/22 02:56:27 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/22 19:54:12 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ void	check_and_parse(int ac, char **av, t_solong *data)
 	data->collect = data->collectibles;
 	if (!check_map_surrounded_walls(data))
 		exit(EXIT_FAILURE);
-	printf("|%d| |%d|\n", data->p_x, data->p_y);
 	flood_fill_map(data, data->p_x, data->p_y);
-	printf("collectibles: %d\n", data->collectibles);
-	printf("collect: %d\n", data->collect);
-	printf("exit reached: %s\n", data->exit_reached ? "true" : "false");
+	if (!data->exit_reached || !!data->collect)
+	{
+		ft_fprintf(2, "Error\nInvalid map: no exit reached or collectibles\n");
+		exit(EXIT_FAILURE);
+	}
 }
 
 bool	check_args(int ac, char **av)
@@ -61,8 +62,8 @@ bool	check_rectangular(t_solong *data)
 	size_t	i;
 
 	map = data->map_lst;
-	data->height = ft_lstsize(map);
 	data->width = ft_strlen(map->content);
+	data->height = ft_lstsize(map);
 	i = 0;
 	while (map)
 	{
@@ -89,13 +90,13 @@ bool	check_map_elements(t_solong *data)
 		y = -1;
 		while (data->map[x][++y])
 		{
-			if (data->map[x][y] == 'C')
+			if (data->map[x][y] == COLLECTIBLE)
 				data->collectibles++;
-			else if (data->map[x][y] == 'P')
+			else if (data->map[x][y] == PLAYER && data->player == 0)
 				init_player(x, y, data);
-			else if (data->map[x][y] == 'E')
+			else if (data->map[x][y] == EXIT)
 				data->exit++;
-			else if (data->map[x][y] != '1' && data->map[x][y] != '0')
+			else if (data->map[x][y] != WALL && data->map[x][y] != FLOOR)
 			{
 				ft_fprintf(2, "Error\nInvalid map |%c|\n", data->map[x][y]);
 				return (false);

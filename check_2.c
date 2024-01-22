@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 21:45:20 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/22 02:32:54 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/22 20:12:27 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool	check_map_surrounded_walls(t_solong *data)
 		{
 			while (data->map[x][++y])
 			{
-				if (data->map[x][y] != '1')
+				if (data->map[x][y] != WALL)
 				{
 					ft_fprintf(2, "Error\nMap not surrounded by walls\n");
 					return (false);
