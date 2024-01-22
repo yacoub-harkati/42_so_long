@@ -6,13 +6,13 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:22:59 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/21 21:03:56 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/22 03:08:49 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void init_struct(t_solong **data)
+void	init_struct(t_solong **data)
 {
 	(*data) = ft_calloc(1, sizeof(t_solong));
 	if (!(*data))
