@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 21:03:41 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/22 19:51:19 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/22 22:26:34 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,4 @@ void	convert_lst(t_solong *data)
 	data->map = ft_split(line_map, '\n');
 	data->map_cpy = ft_split(line_map, '\n');
 	ft_lstclear(&(data->map_lst), free);
-}
-
-void	init_player(int row, int col, t_solong *data)
-{
-	data->p_x = col;
-	data->p_y = row;
-	data->player++;
 }

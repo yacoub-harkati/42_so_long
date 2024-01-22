@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:35:26 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/22 19:51:27 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/22 22:37:17 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,13 @@ typedef struct s_solong
 	char	**map;
 	char	**map_cpy;
 	t_list	*map_lst;
+	void	*wall_sprite;
+	void	*floor_sprite;
+	void	*player_sprite_right[4];
+	void	*player_sprite_left[4];
+	void	*collectible_sprite[4];
+	void	*exit_sprite[4];
+	void	*enemy_sprite[3];
 }			t_solong;
 
 typedef struct s_point
@@ -53,7 +60,7 @@ typedef struct s_point
 }			t_point;
 
 void		init_struct(t_solong **data);
-void		check_and_parse(int ac, char **av, t_solong *data);
+void		check_and_parse_map(int ac, char **av, t_solong *data);
 bool		check_args(int ac, char **av);
 bool		fill_map_lst(t_solong *data);
 bool		check_rectangular(t_solong *data);
@@ -63,4 +70,7 @@ void		init_player(int row, int col, t_solong *data);
 bool		check_elem_count(t_solong *data);
 void		flood_fill_map(t_solong *data, int x, int y);
 bool		check_map_surrounded_walls(t_solong *data);
+void		init_sprite(t_solong *data);
+void	load_sprites(char *sprite_name, int nb_frame, void **sprite,
+		t_solong *data);
 #endif

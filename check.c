@@ -6,13 +6,13 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:29:24 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/22 19:54:12 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/22 22:06:39 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	check_and_parse(int ac, char **av, t_solong *data)
+void	check_and_parse_map(int ac, char **av, t_solong *data)
 {
 	if (!check_args(ac, av))
 		exit(EXIT_FAILURE);
