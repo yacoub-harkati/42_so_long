@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:29:24 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 01:22:30 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/23 01:28:10 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	check_and_parse_map(int ac, char **av, t_solong *data)
 	if (!check_map_surrounded_walls(data))
 		exit(EXIT_FAILURE);
 	flood_fill_map(data, data->p_y, data->p_x);
-	printf("pos: col: %d row: %d\n", data->p_x, data->p_y);
 	if (!data->exit_reached || !!data->collect)
 	{
 		ft_fprintf(2, "Error\nInvalid map: no exit reached or collectibles\n");

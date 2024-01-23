@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 01:25:12 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 01:26:09 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/23 01:34:17 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,35 +27,31 @@ void	handle_action(int keycode, t_solong *data)
 void	move_player(int x, int y, t_solong *data)
 {
 	if (data->map[data->p_y + y][data->p_x + x] == FLOOR)
-	{
-		data->map[data->p_y][data->p_x] = FLOOR;
-		data->map[data->p_y + y][data->p_x + x] = PLAYER;
-		data->p_x += x;
-		data->p_y += y;
-		data->moves++;
-	}
+		handle_player(x, y, data);
 	else if (data->map[data->p_y + y][data->p_x + x] == COLLECTIBLE)
 	{
-		data->map[data->p_y][data->p_x] = FLOOR;
-		data->map[data->p_y + y][data->p_x + x] = PLAYER;
-		data->p_x += x;
-		data->p_y += y;
-		data->moves++;
+		handle_player(x, y, data);
 		data->collectibles--;
 	}
 	else if (data->map[data->p_y + y][data->p_x + x] == EXIT
 		&& data->collectibles == 0)
 	{
-		data->map[data->p_y][data->p_x] = FLOOR;
-		data->map[data->p_y + y][data->p_x + x] = PLAYER;
-		data->p_x += x;
-		data->p_y += y;
-		data->moves++;
+		handle_player(x, y, data);
 		data->exit_reached = true;
 	}
 	print_map(data);
 	printf("\nplayer pos: x: %d y: %d\n", data->p_x, data->p_y);
+	printf("collectibles: %d\n", data->collectibles);
 	ft_fprintf(1, "moves: %d\n", data->moves);
+}
+
+void	handle_player(int x, int y, t_solong *data)
+{
+	data->map[data->p_y][data->p_x] = FLOOR;
+	data->map[data->p_y + y][data->p_x + x] = PLAYER;
+	data->p_x += x;
+	data->p_y += y;
+	data->moves++;
 }
 
 void	clearScreen(void)

@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:35:26 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 01:01:40 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/23 01:30:22 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void		init_window(t_solong *data);
 void		hook_register(t_solong *data);
 void		free_matrix(char **matrix);
 void		handle_action(int keycode, t_solong *data);
+void		handle_player(int x, int y, t_solong *data);
 void		move_player(int x, int y, t_solong *data);
 void		print_map(t_solong *data);
 #endif
