@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:35:26 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/22 22:37:17 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/23 01:01:40 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,20 @@
 # define EXIT 'E'
 # define FLOOR '0'
 # define ENEMY 'I'
+# define ARROW_UP 65362
+# define ARROW_DOWN 65364
+# define ARROW_LEFT 65361
+# define ARROW_RIGHT 65363
+# define UP 119
+# define DOWN 115
+# define LEFT 97
+# define RIGHT 100
 
 typedef struct s_solong
 {
 	void	*mlx_ptr;
 	void	*mlx_win;
+	char	*title;
 	int		map_fd;
 	size_t	height;
 	size_t	width;
@@ -71,6 +80,13 @@ bool		check_elem_count(t_solong *data);
 void		flood_fill_map(t_solong *data, int x, int y);
 bool		check_map_surrounded_walls(t_solong *data);
 void		init_sprite(t_solong *data);
-void	load_sprites(char *sprite_name, int nb_frame, void **sprite,
-		t_solong *data);
+void		load_sprites(char *sprite_name, int nb_frame, void **sprite,
+				t_solong *data);
+void		init_title(t_solong *data, char **av);
+void		init_window(t_solong *data);
+void		hook_register(t_solong *data);
+void		free_matrix(char **matrix);
+void		handle_action(int keycode, t_solong *data);
+void		move_player(int x, int y, t_solong *data);
+void		print_map(t_solong *data);
 #endif

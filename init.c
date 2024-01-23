@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:22:59 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/22 22:38:55 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/23 01:23:55 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,39 +46,20 @@ void	init_sprite(t_solong *data)
 	load_sprites("textures/xpm/i", 3, data->enemy_sprite, data);
 }
 
-void	init_player(int row, int col, t_solong *data)
+void	init_player(int col, int row, t_solong *data)
 {
 	data->p_x = col;
 	data->p_y = row;
 	data->player++;
 }
 
-void	load_sprites(char *sprite_name, int nb_frame, void **sprite,
-		t_solong *data)
+void init_title(t_solong *data, char **av)
 {
-	int		i;
-	char	*path;
-	char	*tmp;
-	int		unused;
+	data->title = ft_strjoin(ft_strdup("So long | "), ft_strrchr(av[1], '/') + 1);
+}
 
-	i = 0;
-	tmp = ft_strdup(sprite_name);
-	while (++i < nb_frame)
-	{
-		if (nb_frame > 1)
-		{
-			path = ft_strjoin(tmp, "_");
-			path = ft_strjoin(path, ft_itoa(i));
-			path = ft_strjoin(path, ".xpm");
-			sprite[i] = mlx_xpm_file_to_image(data->mlx_ptr, path, &unused,
-					&unused);
-		}
-		else
-		{
-			path = ft_strjoin(sprite_name, ".xpm");
-			*sprite = mlx_xpm_file_to_image(data->mlx_ptr, path, &unused,
-					&unused);
-		}
-		free(path);
-	}
+void init_window(t_solong *data)
+{
+	data->mlx_win = mlx_new_window(data->mlx_ptr, data->width * 32,
+			data->height * 32, data->title);
 }
