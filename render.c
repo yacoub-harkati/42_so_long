@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 02:06:49 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 04:39:28 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/23 07:11:35 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	render_wall(t_solong *data, int x, int y)
 
 void	render_collectible(t_solong *data, int x, int y, int index)
 {
-	static int	i[1000];
-	static int	call_count[1000];
+	static int	i[50000];
+	static int	call_count[50000];
 
 	if (call_count[index] > 1000)
 	{
