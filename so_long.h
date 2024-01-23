@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:35:26 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 04:31:12 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/23 04:49:05 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define DOWN 115
 # define LEFT 97
 # define RIGHT 100
-
+# define HEADER_OFFSET 20
 typedef struct s_solong
 {
 	void				*mlx_ptr;
@@ -121,6 +121,7 @@ void					render_game_logic(t_solong *data);
 void					render_floor(t_solong *data, int x, int y);
 void					render_enemy(t_solong *data, int x, int y);
 void					render_player(t_solong *data, int x, int y);
+void					render_game_moves(t_solong *data);
 
 // Queue functions for flood fill algorithm
 t_queue					*create_queue(void);

@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 20:34:37 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 04:39:21 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/23 04:47:42 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	render_game(t_solong *data)
 {
-	mlx_clear_window(data->mlx_ptr, data->mlx_win);
 	if (data->exit_reached)
 	{
 		mlx_string_put(data->mlx_ptr, data->mlx_win, 10, 10, 0x00FFFFFF,
@@ -23,7 +22,11 @@ int	render_game(t_solong *data)
 			"Press ESC to exit");
 	}
 	else
+	{
+		mlx_clear_window(data->mlx_ptr, data->mlx_win);
+		render_game_moves(data);
 		render_game_logic(data);
+	}
 	return (0);
 }
 
