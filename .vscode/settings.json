@@ -11,6 +11,7 @@
 		"mlx.h": "c",
 		"keysym.h": "c",
 		"keysymdef.h": "c",
-		"so_long.h": "c"
+		"so_long.h": "c",
+		"so_long_bonus.h": "c"
 	}
 }

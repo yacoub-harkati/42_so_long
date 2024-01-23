@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   check_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:29:24 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 06:36:19 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/23 06:35:49 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	check_and_parse_map(int ac, char **av, t_solong *data)
 {
@@ -85,7 +85,8 @@ bool	check_map_elements(t_solong *data)
 				init_player(x, y, data);
 			else if (data->map[x][y] == EXIT)
 				data->exit++;
-			else if (data->map[x][y] != WALL && data->map[x][y] != FLOOR)
+			else if (data->map[x][y] != WALL && data->map[x][y] != FLOOR
+				&& data->map[x][y] != ENEMY)
 				printf_error_clean("Invalid map: invalid element\n", data);
 		}
 	}
