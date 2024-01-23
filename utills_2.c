@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.c                                             :+:      :+:    :+:   */
+/*   utills_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/23 00:06:09 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 05:36:19 by yaharkat         ###   ########.fr       */
+/*   Created: 2024/01/23 05:39:12 by yaharkat          #+#    #+#             */
+/*   Updated: 2024/01/23 05:43:19 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	close_hook(int keycode, t_solong *data)
+char	*join_paths(char *tmp, int i)
 {
-	(void)keycode;
-	cleanup(data);
-	exit(EXIT_SUCCESS);
-	return (0);
-}
+	char *path;
+	char *num;
+	char *tmp_path;
 
-int	keydown_hook(int keycode, t_solong *data)
-{
-	if (keycode == XK_Escape)
-		close_hook(0, data);
-	else
-		handle_action(keycode, data);
-	return (0);
-}
-
-void	hook_register(t_solong *data)
-{
-	mlx_hook(data->mlx_win, 2, 1L << 0, keydown_hook, data);
-	mlx_hook(data->mlx_win, 17, 1L << 17, close_hook, data);
+	num = ft_itoa(i + 1);
+	tmp_path = ft_strjoin(tmp, "_");
+	path = ft_strjoin(tmp_path, num);
+	path = ft_strjoin(path, ".xpm");
+	free(num);
+	return (path);
 }

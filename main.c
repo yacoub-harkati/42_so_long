@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 20:34:37 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 04:47:42 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/23 06:00:59 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,17 @@ int	render_game(t_solong *data)
 {
 	if (data->exit_reached)
 	{
-		mlx_string_put(data->mlx_ptr, data->mlx_win, 10, 10, 0x00FFFFFF,
-			"You won!");
-		mlx_string_put(data->mlx_ptr, data->mlx_win, 10, 30, 0x00FFFFFF,
-			"Press ESC to exit");
+		mlx_string_put(data->mlx_ptr, data->mlx_win, data->width * 32 / 2 - 42,
+			data->height * 32 / 2 - 10, 0x00FFFFFF, "You won!");
+		mlx_string_put(data->mlx_ptr, data->mlx_win, data->width * 32 / 2 - 42,
+			data->height * 32 / 2 + 10, 0x00FFFFFF, "Press ESC to exit");
+	}
+	else if (data->lost)
+	{
+		mlx_string_put(data->mlx_ptr, data->mlx_win, data->width * 32 / 2 - 42,
+			data->height * 32 / 2 - 10, 0x00FFFFFF, "You lost!");
+		mlx_string_put(data->mlx_ptr, data->mlx_win, data->width * 32 / 2 - 42,
+			data->height * 32 / 2 + 10, 0x00FFFFFF, "Press ESC to exit");
 	}
 	else
 	{
@@ -37,8 +44,8 @@ int	main(int ac, char **av)
 	init_struct(&data);
 	init_title(data, av);
 	check_and_parse_map(ac, av, data);
-	init_sprite(data);
 	init_window(data);
+	init_sprite(data);
 	print_game_state(data);
 	hook_register(data);
 	mlx_loop_hook(data->mlx_ptr, render_game, data);

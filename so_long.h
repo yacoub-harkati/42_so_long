@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:35:26 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 04:49:05 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/23 05:42:10 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct s_solong
 	int					collect;
 	int					collectibles;
 	bool				exit_reached;
+	bool				lost;
+	bool				sprites_loaded;
 	int					p_x;
 	int					p_y;
 	int					p_dir;
@@ -131,4 +133,8 @@ t_point					dequeue(t_queue *q);
 // Hook registration and cleanup functions
 void					hook_register(t_solong *data);
 void					free_matrix(char **matrix);
+void					cleanup(t_solong *data);
+void					free_sprites(t_solong *data);
+void					printf_error_clean(char *str, t_solong *data);
+char					*join_paths(char *tmp, int i);
 #endif

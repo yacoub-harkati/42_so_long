@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 21:03:41 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 04:44:44 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/23 05:57:44 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	convert_lst(t_solong *data)
 	}
 	data->map = ft_split(line_map, '\n');
 	data->map_cpy = ft_split(line_map, '\n');
-	ft_lstclear(&(data->map_lst), free);
+	free(line_map);
 }
 
 void	load_sprites(char *sprite_name, int nb_frame, void **sprite,
@@ -62,9 +62,7 @@ void	load_sprites(char *sprite_name, int nb_frame, void **sprite,
 		tmp = ft_strdup(sprite_name);
 		if (nb_frame > 1)
 		{
-			path = ft_strjoin(tmp, "_");
-			path = ft_strjoin(path, ft_itoa(i + 1));
-			path = ft_strjoin(path, ".xpm");
+			path = join_paths(tmp, i);
 			sprite[i] = mlx_xpm_file_to_image(data->mlx_ptr, path, &unused,
 					&unused);
 		}

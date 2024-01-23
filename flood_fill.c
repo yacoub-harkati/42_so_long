@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 03:59:54 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 04:28:40 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/23 06:03:22 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,4 @@ void	flood_fill_map(t_solong *data, int x, int y)
 		enqueue(queue, (t_point){p.x, p.y - 1});
 	}
 	free(queue);
-	free_matrix(map);
 }
