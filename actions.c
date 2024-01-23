@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 01:25:12 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 01:34:17 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/23 03:29:52 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,15 @@ void	handle_action(int keycode, t_solong *data)
 	else if (keycode == ARROW_DOWN || keycode == DOWN)
 		move_player(0, 1, data);
 	else if (keycode == ARROW_LEFT || keycode == LEFT)
+	{
+		data->p_dir = 0;
 		move_player(-1, 0, data);
+	}
 	else if (keycode == ARROW_RIGHT || keycode == RIGHT)
+	{
+		data->p_dir = 1;
 		move_player(1, 0, data);
+	}
 }
 
 void	move_player(int x, int y, t_solong *data)
@@ -39,10 +45,12 @@ void	move_player(int x, int y, t_solong *data)
 		handle_player(x, y, data);
 		data->exit_reached = true;
 	}
-	print_map(data);
-	printf("\nplayer pos: x: %d y: %d\n", data->p_x, data->p_y);
-	printf("collectibles: %d\n", data->collectibles);
-	ft_fprintf(1, "moves: %d\n", data->moves);
+	else if (data->map[data->p_y + y][data->p_x + x] == ENEMY)
+	{
+		ft_fprintf(STDOUT_FILENO, "You lost\n");
+		exit(EXIT_SUCCESS);
+	}
+	print_game_state(data);
 }
 
 void	handle_player(int x, int y, t_solong *data)
@@ -54,22 +62,14 @@ void	handle_player(int x, int y, t_solong *data)
 	data->moves++;
 }
 
-void	clearScreen(void)
-{
-	const char	*CLEAR_SCREEN_ANSI = "\e[1;1H\e[2J";
-
-	write(1, CLEAR_SCREEN_ANSI, 11);
-}
-
 void	print_map(t_solong *data)
 {
 	int	i;
 
 	i = 0;
-	clearScreen();
 	while (data->map[i])
 	{
-		printf("%s\n", data->map[i]);
+		ft_fprintf(STDOUT_FILENO, "%s\n", data->map[i]);
 		i++;
 	}
 }

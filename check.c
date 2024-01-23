@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:29:24 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 01:28:10 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/23 01:46:20 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	check_and_parse_map(int ac, char **av, t_solong *data)
 		ft_fprintf(2, "Error\nInvalid map: no exit reached or collectibles\n");
 		exit(EXIT_FAILURE);
 	}
+	data->exit_reached = false;
 }
 
 bool	check_args(int ac, char **av)

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/22 19:45:55 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 01:23:13 by yaharkat         ###   ########.fr       */
+/*   Created: 2024/01/23 03:59:54 by yaharkat          #+#    #+#             */
+/*   Updated: 2024/01/23 04:18:13 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,35 +42,27 @@ static bool	is_collectible_or_exit(t_point p, t_solong *data, char **map)
 	return (false);
 }
 
-static void	add_neighbours_to_stack(t_point p, int *top, t_point *stack)
+void	flood_fill_map(t_solong *data, int x, int y)
 {
-	stack[(*top)++] = (t_point){p.x + 1, p.y};
-	stack[(*top)++] = (t_point){p.x - 1, p.y};
-	stack[(*top)++] = (t_point){p.x, p.y + 1};
-	stack[(*top)++] = (t_point){p.x, p.y - 1};
-}
-
-void	flood_fill_map(t_solong *data, int col, int row)
-{
-	t_point	*stack;
-	int		top;
+	t_queue	*queue;
 	char	**map;
 	t_point	p;
 
-	top = 0;
+	queue = create_queue();
 	map = data->map_cpy;
-	stack = malloc(sizeof(t_point) * data->width * data->height);
-	stack[top++] = (t_point){col, row};
-	while (top > 0)
+	enqueue(queue, (t_point){x, y});
+	while (queue->front != NULL)
 	{
-		p = stack[--top];
+		p = dequeue(queue);
 		if (is_valid_point(p, data, map))
 			continue ;
 		if (is_collectible_or_exit(p, data, map))
 			continue ;
 		map[p.y][p.x] = 'V';
-		add_neighbours_to_stack(p, &top, stack);
+		enqueue(queue, (t_point){p.x + 1, p.y});
+		enqueue(queue, (t_point){p.x - 1, p.y});
+		enqueue(queue, (t_point){p.x, p.y + 1});
+		enqueue(queue, (t_point){p.x, p.y - 1});
 	}
-	free(stack);
-	free_matrix(map);
+	free(queue);
 }
