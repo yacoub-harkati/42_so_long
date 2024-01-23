@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 04:17:55 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 04:18:21 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/23 04:36:08 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ t_queue	*create_queue(void)
 	t_queue	*q;
 
 	q = (t_queue *)malloc(sizeof(t_queue));
-	q->front = q->rear = NULL;
+	q->front = NULL;
+	q->rear = NULL;
 	return (q);
 }
 
@@ -30,7 +31,8 @@ void	enqueue(t_queue *q, t_point point)
 	temp->next = NULL;
 	if (q->rear == NULL)
 	{
-		q->front = q->rear = temp;
+		q->front = temp;
+		q->rear = temp;
 		return ;
 	}
 	q->rear->next = temp;
