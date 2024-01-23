@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:22:59 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 01:23:55 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/23 04:38:57 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,14 @@ void	init_player(int col, int row, t_solong *data)
 	data->player++;
 }
 
-void init_title(t_solong *data, char **av)
+void	init_title(t_solong *data, char **av)
 {
-	data->title = ft_strjoin(ft_strdup("So long | "), ft_strrchr(av[1], '/') + 1);
+	data->title = ft_strjoin(ft_strdup("So long | "), ft_strrchr(av[1], '/')
+			+ 1);
 }
 
-void init_window(t_solong *data)
+void	init_window(t_solong *data)
 {
-	data->mlx_win = mlx_new_window(data->mlx_ptr, data->width * 32,
-			data->height * 32, data->title);
+	data->mlx_win = mlx_new_window(data->mlx_ptr, data->width * 32, data->height
+			* 32, data->title);
 }

@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 02:06:49 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 03:34:18 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/23 04:39:28 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	render_game_logic(t_solong *data)
 {
 	int	col;
 	int	row;
-	int c_count;
-	
+	int	c_count;
+
 	row = -1;
 	c_count = 0;
 	while (data->map[++row])
@@ -64,7 +64,7 @@ void	render_exit(t_solong *data, int x, int y)
 {
 	static int	i;
 	static int	call_count;
-	static bool rendered;
+	static bool	rendered;
 
 	draw_sprite(data, x, y, data->exit_sprite[i]);
 	if (data->collectibles == 0)

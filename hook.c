@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 00:06:09 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 00:54:48 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/23 04:38:43 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	keydown_hook(int keycode, t_solong *data)
 {
 	if (keycode == XK_Escape)
 		close_hook(0, data);
-	else 
+	else
 		handle_action(keycode, data);
 	return (0);
 }

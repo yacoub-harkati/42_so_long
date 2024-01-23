@@ -6,19 +6,21 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 20:34:37 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 02:50:19 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/23 04:39:21 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-int render_game(t_solong *data)
+
+int	render_game(t_solong *data)
 {
 	mlx_clear_window(data->mlx_ptr, data->mlx_win);
 	if (data->exit_reached)
 	{
-		// Won logic
-		mlx_string_put(data->mlx_ptr, data->mlx_win, 10, 10, 0x00FFFFFF, "You won!");
-		mlx_string_put(data->mlx_ptr, data->mlx_win, 10, 30, 0x00FFFFFF, "Press ESC to exit");
+		mlx_string_put(data->mlx_ptr, data->mlx_win, 10, 10, 0x00FFFFFF,
+			"You won!");
+		mlx_string_put(data->mlx_ptr, data->mlx_win, 10, 30, 0x00FFFFFF,
+			"Press ESC to exit");
 	}
 	else
 		render_game_logic(data);
