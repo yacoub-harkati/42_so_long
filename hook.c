@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 00:06:09 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/24 04:08:02 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/24 17:08:11 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ int	close_hook(int keycode, t_solong *data)
 		mlx_loop_end(data->mlx_ptr);
 	else
 		exit(EXIT_SUCCESS);
+	return (0);
+}
+
+int	close_destroy_hook(t_solong *data)
+{
+	mlx_loop_end(data->mlx_ptr);
 	return (0);
 }
 
@@ -33,6 +39,6 @@ int	keydown_hook(int keycode, t_solong *data)
 void	hook_register(t_solong *data)
 {
 	mlx_hook(data->mlx_win, KeyPress, KeyPressMask, keydown_hook, data);
-	mlx_hook(data->mlx_win, DestroyNotify, StructureNotifyMask, close_hook,
-		data);
+	mlx_hook(data->mlx_win, DestroyNotify, StructureNotifyMask,
+		close_destroy_hook, data);
 }
