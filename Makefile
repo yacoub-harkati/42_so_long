@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror # -fsanitize=address -g
 INCLUDE = -I./libft -I./minilibx-linux
 MLX_FLAGS = -Lminilibx-linux -lmlx -L/usr/lib/X11 -lXext -lX11
 LIBFT = -Llibft -lft
@@ -35,7 +35,8 @@ SRC_BONUS = \
 	bonus/render_2_bonus.c \
 	bonus/render_bonus.c \
 	bonus/utils_2_bonus.c \
-	bonus/utils_bonus.c
+	bonus/utils_bonus.c \
+	bonus/enemy_bonus.c
 
 OBJS = $(SRC:.c=.o)
 OBJS_BONUS = $(SRC_BONUS:.c=.o)

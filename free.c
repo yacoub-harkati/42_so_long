@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 00:48:21 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 06:11:14 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/24 04:15:25 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	cleanup(t_solong *data)
 		mlx_destroy_window(data->mlx_ptr, data->mlx_win);
 	if (data->mlx_ptr)
 		mlx_destroy_display(data->mlx_ptr);
+	free(data->mlx_ptr);
 	free(data);
 }
 

@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:35:26 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 06:57:13 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/24 03:43:42 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft/libft.h"
 # include "minilibx-linux/mlx.h"
 # include <X11/keysym.h>
+# include <X11/X.h>
 # include <fcntl.h>
 # include <stdbool.h>
 
@@ -34,6 +35,7 @@
 # define LEFT 97
 # define RIGHT 100
 # define HEADER_OFFSET 20
+# define SPRITE_SIZE 32
 
 typedef struct s_solong
 {

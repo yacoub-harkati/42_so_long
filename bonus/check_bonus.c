@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:29:24 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 06:35:49 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/24 01:55:41 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ bool	check_map_elements(t_solong *data)
 				init_player(x, y, data);
 			else if (data->map[x][y] == EXIT)
 				data->exit++;
+			else if (data->map[x][y] == ENEMY)
+				data->enemy_count++;
 			else if (data->map[x][y] != WALL && data->map[x][y] != FLOOR
 				&& data->map[x][y] != ENEMY)
 				printf_error_clean("Invalid map: invalid element\n", data);

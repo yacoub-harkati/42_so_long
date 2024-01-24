@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:22:59 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 06:34:26 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/24 03:14:35 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	init_struct(t_solong **data)
 	(*data)->p_y = -1;
 	(*data)->moves = 0;
 	(*data)->player = 0;
+	(*data)->enemy_count = 0;
+	(*data)->enemy_pos = NULL;
 }
 
 void	init_sprite(t_solong *data)
@@ -65,6 +67,6 @@ void	init_title(t_solong *data, char **av)
 void	init_window(t_solong *data)
 {
 	data->mlx_ptr = mlx_init();
-	data->mlx_win = mlx_new_window(data->mlx_ptr, data->width * 32, data->height
-			* 32 + HEADER_OFFSET, data->title);
+	data->mlx_win = mlx_new_window(data->mlx_ptr, data->width * SPRITE_SIZE,
+			data->height * SPRITE_SIZE + HEADER_OFFSET, data->title);
 }

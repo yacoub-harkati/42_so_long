@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 21:03:41 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 06:34:54 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/24 04:06:02 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,6 @@ void	print_game_state(t_solong *data)
 
 void	draw_sprite(t_solong *data, int x, int y, void *sprite)
 {
-	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, sprite, x * 32, y
-		* 32 + HEADER_OFFSET);
+	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, sprite, x
+		* SPRITE_SIZE, y * SPRITE_SIZE + HEADER_OFFSET);
 }

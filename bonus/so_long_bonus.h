@@ -6,17 +6,19 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:35:26 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 06:57:18 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/01/24 03:38:47 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 # include <X11/keysym.h>
+# include <X11/X.h>
 # include <fcntl.h>
+# include <math.h>
 # include <stdbool.h>
 
 # define WALL '1'
@@ -34,6 +36,14 @@
 # define LEFT 97
 # define RIGHT 100
 # define HEADER_OFFSET 20
+# define SPRITE_SIZE 32
+# define ENEMY_MOVE_DELAY 1500
+
+typedef struct s_point
+{
+	int					x;
+	int					y;
+}						t_point;
 
 typedef struct s_solong
 {
@@ -54,6 +64,8 @@ typedef struct s_solong
 	int					p_y;
 	int					p_dir;
 	int					moves;
+	int					enemy_count;
+	t_point				*enemy_pos;
 	char				**map;
 	char				**map_cpy;
 	t_list				*map_lst;
@@ -65,12 +77,6 @@ typedef struct s_solong
 	void				*exit_sprite[4];
 	void				*enemy_sprite[3];
 }						t_solong;
-
-typedef struct s_point
-{
-	int					x;
-	int					y;
-}						t_point;
 
 typedef struct s_queue_node
 {
@@ -90,6 +96,7 @@ void					init_player(int row, int col, t_solong *data);
 void					init_sprite(t_solong *data);
 void					init_title(t_solong *data, char **av);
 void					init_window(t_solong *data);
+void					init_enemy(t_solong *data);
 
 // Map parsing and checking functions
 bool					check_args(int ac, char **av);
@@ -125,17 +132,24 @@ void					render_floor(t_solong *data, int x, int y);
 void					render_enemy(t_solong *data, int x, int y);
 void					render_player(t_solong *data, int x, int y);
 void					render_game_moves(t_solong *data);
+void					render_text(t_solong *data, char *text);
 
 // Queue functions for flood fill algorithm
 t_queue					*create_queue(void);
 void					enqueue(t_queue *q, t_point point);
 t_point					dequeue(t_queue *q);
 
-// Hook registration and cleanup functions
+// Hook registration and helper functions
 void					hook_register(t_solong *data);
 void					free_matrix(char **matrix);
 void					cleanup(t_solong *data);
 void					free_sprites(t_solong *data);
 void					printf_error_clean(char *str, t_solong *data);
 char					*join_paths(char *tmp, int i);
+void					move_enemy(t_solong *data, int player_x, int player_y);
+void					move_enemy_logic(t_solong *data, int i, int new_x,
+							int new_y);
+bool					should_update_enemy_pos(int delay);
+void					move_enemy_direction(t_solong *data, int i, int dx,
+							int dy);
 #endif
