@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 20:34:37 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/24 03:57:30 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/02/01 23:02:40 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	render_game(t_solong *data)
 	}
 	else
 	{
-		mlx_clear_window(data->mlx_ptr, data->mlx_win);
 		render_game_moves(data);
 		render_game_logic(data);
 	}

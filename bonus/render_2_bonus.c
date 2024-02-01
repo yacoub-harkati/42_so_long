@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 02:14:12 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 06:34:33 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/02/01 23:05:47 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,16 @@ void	render_player(t_solong *data, int x, int y)
 
 void	render_game_moves(t_solong *data)
 {
-	char	*str;
-	char	*temp;
+	char		*str;
+	char		*temp;
+	static int	moves;
 
 	str = ft_itoa(data->moves);
 	temp = ft_strjoin(ft_strdup("Moves: "), str);
+	if (data->moves > moves)
+		mlx_clear_window(data->mlx_ptr, data->mlx_win);
 	mlx_string_put(data->mlx_ptr, data->mlx_win, 10, 14, 0x00FFFFFF, temp);
 	free(str);
 	free(temp);
+	moves = data->moves;
 }
