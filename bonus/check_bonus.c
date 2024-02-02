@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:29:24 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/24 01:55:41 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/02/02 02:43:22 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	check_and_parse_map(int ac, char **av, t_solong *data)
 	if (data->map_fd < 0)
 		printf_error_clean("Can't open map file\n", data);
 	fill_map_lst(data);
+	if (!data->map_lst)
+		printf_error_clean("Invalid map: map empty\n", data);
 	if (!check_rectangular(data) || !check_map_elements(data)
 		|| !check_elem_count(data))
 		exit(EXIT_FAILURE);

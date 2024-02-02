@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:35:26 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/24 03:38:47 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/02/02 02:39:04 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void					init_enemy(t_solong *data);
 // Map parsing and checking functions
 bool					check_args(int ac, char **av);
 void					check_and_parse_map(int ac, char **av, t_solong *data);
-bool					fill_map_lst(t_solong *data);
+void					fill_map_lst(t_solong *data);
 bool					check_rectangular(t_solong *data);
 void					convert_lst(t_solong *data);
 bool					check_map_elements(t_solong *data);

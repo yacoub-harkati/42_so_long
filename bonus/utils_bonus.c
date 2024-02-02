@@ -6,13 +6,13 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 21:03:41 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/24 04:06:02 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/02/02 02:36:05 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-bool	fill_map_lst(t_solong *data)
+void	fill_map_lst(t_solong *data)
 {
 	char	*line;
 
@@ -21,14 +21,15 @@ bool	fill_map_lst(t_solong *data)
 	{
 		get_next_line(data->map_fd, &line);
 		if (line == NULL)
-			return (false);
+		{
+			close(data->map_fd);
+			return ;
+		}
 		if (data->map_lst == NULL)
 			data->map_lst = ft_lstnew(line);
 		else
 			ft_lstadd_back(&(data->map_lst), ft_lstnew(line));
 	}
-	close(data->map_fd);
-	return (true);
 }
 
 void	convert_lst(t_solong *data)
