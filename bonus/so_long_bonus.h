@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:35:26 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/02/02 02:39:04 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/02/02 02:53:02 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@
 # define RIGHT 100
 # define HEADER_OFFSET 20
 # define SPRITE_SIZE 32
-# define ENEMY_MOVE_DELAY 1500
 
 typedef struct s_point
 {
