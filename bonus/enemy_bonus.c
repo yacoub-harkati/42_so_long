@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 03:10:28 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/24 03:32:47 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/02/02 02:53:33 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	move_enemy(t_solong *data, int player_x, int player_y)
 	int	dy;
 
 	i = -1;
-	if (!should_update_enemy_pos(ENEMY_MOVE_DELAY))
+	if (!should_update_enemy_pos(700))
 		return ;
 	while (++i < data->enemy_count)
 	{
