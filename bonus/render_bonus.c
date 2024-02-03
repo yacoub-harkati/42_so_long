@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 02:06:49 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 07:07:33 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/02/03 13:10:29 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,13 @@ void	render_collectible(t_solong *data, int x, int y, int index)
 {
 	static int	i[50000];
 	static int	call_count[50000];
+	int			render_delay;
 
-	if (call_count[index] > 1000)
+	if (data->width * data->height >= 200)
+		render_delay = 100;
+	else
+		render_delay = 1000;
+	if (call_count[index] > render_delay)
 	{
 		i[index] = (i[index] + 1) % 4;
 		call_count[index] = 0;
@@ -65,11 +70,15 @@ void	render_exit(t_solong *data, int x, int y)
 	static int	i;
 	static int	call_count;
 	static bool	rendered;
+	int			render_delay;
 
-	draw_sprite(data, x, y, data->exit_sprite[i]);
+	if (data->width * data->height >= 200)
+		render_delay = 100;
+	else
+		render_delay = 500;
 	if (data->collectibles == 0)
 	{
-		if (!rendered && call_count > 550)
+		if (!rendered && call_count > render_delay)
 		{
 			i = (i + 1) % 4;
 			if (i == 3)
@@ -79,4 +88,5 @@ void	render_exit(t_solong *data, int x, int y)
 		else
 			call_count++;
 	}
+	draw_sprite(data, x, y, data->exit_sprite[i]);
 }

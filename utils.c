@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 21:03:41 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/02/02 02:38:44 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/02/03 13:22:17 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,11 @@ void	print_game_state(t_solong *data)
 	write(1, "\e[1;1H\e[2J", 11);
 	ft_fprintf(STDOUT_FILENO, "\033[1m%s\033[0m\n\n", data->title);
 	print_map(data);
-	ft_fprintf(STDOUT_FILENO, "\n\033[33mMoves: \033[0m%d\n", data->moves);
+	if (!data->exit_reached)
+		ft_fprintf(STDOUT_FILENO, "\n\033[33mMoves: \033[0m%d\n", data->moves);
+	else
+		ft_fprintf(STDOUT_FILENO, "\n\033[33mMoves: \033[0m%d\n", data->moves
+			- 1);
 	if (data->exit_reached)
 		ft_fprintf(STDOUT_FILENO, "\033[32mYou won!!\n\033[0m");
 	if (data->lost)

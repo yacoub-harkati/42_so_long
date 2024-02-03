@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 01:25:12 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/23 06:24:21 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/02/03 13:16:46 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,20 @@
 
 void	handle_action(int keycode, t_solong *data)
 {
-	if (!data->lost && (keycode == ARROW_UP || keycode == UP))
+	if (!data->lost && !data->exit_reached && (keycode == ARROW_UP
+			|| keycode == UP))
 		move_player(0, -1, data);
-	else if (!data->lost && (keycode == ARROW_DOWN || keycode == DOWN))
+	else if (!data->lost && !data->exit_reached && (keycode == ARROW_DOWN
+			|| keycode == DOWN))
 		move_player(0, 1, data);
-	else if (!data->lost && (keycode == ARROW_LEFT || keycode == LEFT))
+	else if (!data->lost && !data->exit_reached && (keycode == ARROW_LEFT
+			|| keycode == LEFT))
 	{
 		data->p_dir = 0;
 		move_player(-1, 0, data);
 	}
-	else if (!data->lost && (keycode == ARROW_RIGHT || keycode == RIGHT))
+	else if (!data->lost && !data->exit_reached && (keycode == ARROW_RIGHT
+			|| keycode == RIGHT))
 	{
 		data->p_dir = 1;
 		move_player(1, 0, data);

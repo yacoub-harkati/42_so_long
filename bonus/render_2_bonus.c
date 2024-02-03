@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 02:14:12 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/02/01 23:05:47 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/02/03 13:10:03 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,13 @@ void	render_enemy(t_solong *data, int x, int y)
 {
 	static int	i;
 	static int	call_count;
+	int			render_delay;
 
-	if (call_count > 700)
+	if (data->width * data->height >= 200)
+		render_delay = 100;
+	else
+		render_delay = 700;
+	if (call_count > render_delay)
 	{
 		i = (i + 1) % 3;
 		call_count = 0;
@@ -36,8 +41,13 @@ void	render_player(t_solong *data, int x, int y)
 {
 	static int	i;
 	static int	call_count;
+	int			render_delay;
 
-	if (call_count > 450)
+	if (data->width * data->height >= 200)
+		render_delay = 100;
+	else
+		render_delay = 450;
+	if (call_count > render_delay)
 	{
 		i = (i + 1) % 4;
 		call_count = 0;
