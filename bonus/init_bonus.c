@@ -6,7 +6,7 @@
 /*   By: yaharkat <yaharkat@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:22:59 by yaharkat          #+#    #+#             */
-/*   Updated: 2024/01/24 03:14:35 by yaharkat         ###   ########.fr       */
+/*   Updated: 2024/02/05 09:26:41 by yaharkat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,15 @@ void	init_player(int col, int row, t_solong *data)
 
 void	init_title(t_solong *data, char **av)
 {
-	data->title = ft_strjoin(ft_strdup("So long | "), ft_strrchr(av[1], '/')
-			+ 1);
+	char	*title;
+
+	title = ft_strrchr(av[1], '/');
+	if (title != NULL)
+	{
+		data->title = ft_strjoin(ft_strdup("So long | "), title + 1);
+		return ;
+	}
+	data->title = ft_strjoin(ft_strdup("So long | "), av[1]);
 }
 
 void	init_window(t_solong *data)

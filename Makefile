@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror # -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 INCLUDE = -I./libft -I./minilibx-linux
 MLX_FLAGS = -Lminilibx-linux -lmlx -L/usr/lib/X11 -lXext -lX11
 LIBFT = -Llibft -lft
